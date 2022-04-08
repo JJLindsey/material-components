@@ -1,7 +1,7 @@
 //import createMuiTheme from '@material-ui/styles'
 import { createTheme } from '@material-ui/core/styles';
-const appBlue = '#0072EC'
-const appOrange = '#EC7A00'
+const appBlue = '#005698'
+const appOrange = '#984200'
 
 export default createTheme({
     palette: {
@@ -14,6 +14,11 @@ export default createTheme({
         },
         secondary: {
             main: `${appOrange}`
+        }
+    },
+    typography: {
+        h5: {
+            fontWeight: 300
         }
     }
 });
