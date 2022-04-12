@@ -1,6 +1,6 @@
 //import createMuiTheme from '@material-ui/styles'
 import { createTheme } from '@material-ui/core/styles';
-const appBlue = '#005698'
+const appBlue = '#26dbff'
 const appOrange = '#984200'
 
 export default createTheme({
