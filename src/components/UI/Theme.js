@@ -1,7 +1,7 @@
 //import createMuiTheme from '@material-ui/styles'
 import { createTheme } from '@material-ui/core/styles';
 const appBlue = '#26dbff'
-const appOrange = '#984200'
+const appOrange = '#ff6e30'
 
 export default createTheme({
     palette: {
@@ -21,6 +21,12 @@ export default createTheme({
             fontFamily: 'Raleway',
             fontWeight: 600,
             fontSize:'1rem',
+        },
+        estimate: {
+            fontFamily: 'Raleway',
+            fontSize: '1rem',
+            textTransform: 'none',
+            color: 'white'
         }
     }
 });
