@@ -6,6 +6,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 import logo from '../assets/testLogo.png'
 
@@ -66,10 +67,10 @@ export default function Header(props) {
                 <Tabs  value={value} onChange={handleChange} className={classes.tabContainer}
                   indicatorColor='primary'
                 >
-                  <Tab className={classes.tab} label='Home'/>
-                  <Tab className={classes.tab} label='Services'/>
-                  <Tab className={classes.tab} label='About'/>
-                  <Tab className={classes.tab} label='Contact'/>
+                  <Tab className={classes.tab} component={Link} to="/" label='Home'/>
+                  <Tab className={classes.tab} component={Link} to="/services" label="Services"/>
+                  <Tab className={classes.tab} component={Link} to="/about" label='About'/>
+                  <Tab className={classes.tab} component={Link} to="/contact" label='Contact'/>
                 </Tabs>
                 <Button variant='contained' color='secondary' className={classes.button}>
                   Free Estimate
