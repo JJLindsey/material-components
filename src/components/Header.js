@@ -54,6 +54,17 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '50px',
     marginRight:'25px',
     height: '45px'
+  },
+  menu: {
+    backgroundColor: theme.palette.common.blue,
+    color: "white"
+  },
+  menuItem: {
+    ...theme.typography.tab,
+    opacity: 0.7,
+    "&:hover": {
+      opacity: 1
+    }
   }
 }))
 
@@ -121,11 +132,11 @@ export default function Header(props) {
                 <Button variant='contained' color='secondary' className={classes.button}>
                   Free Estimate
                 </Button>
-                <Menu id="simple-id" anchorEl={anchorEl} open={open} onClose={handleClose} MenuListProps={{onMouseLeave: handleClose}}>
-                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/services"> Services</MenuItem>
-                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/customSoftware"> Custom Software</MenuItem>
-                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/mobileApp" > Mobile App Development</MenuItem>
-                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/websiteDev" > Website Development</MenuItem>
+                <Menu id="simple-id" anchorEl={anchorEl} open={open} onClose={handleClose} classes={{paper: classes.menu}} MenuListProps={{onMouseLeave: handleClose}} elevation={0}>
+                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/services" classes={{root: classes.menuItem}}> Services</MenuItem>
+                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/customSoftware" classes={{root: classes.menuItem}}> Custom Software</MenuItem>
+                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/mobileApp" classes={{root: classes.menuItem}}> Mobile App Development</MenuItem>
+                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/websiteDev" classes={{root: classes.menuItem}}> Website Development</MenuItem>
                 </Menu>
               </Toolbar>
           </AppBar>
