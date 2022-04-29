@@ -7,6 +7,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import logo from '../assets/testLogo.png'
 
@@ -59,10 +61,23 @@ const useStyles = makeStyles(theme => ({
 export default function Header(props) {
   const classes = useStyles()
   const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false)
 
   const handleChange =(e, value) => {
     setValue(value)
   };
+
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget)
+    setOpen(true)
+  };
+
+  const handleClose = (e) => {
+    setAnchorEl(null)
+    setOpen(false)
+  };
+
 //check current URL & set value to active tab
   useEffect(() => {
     if (window.location.pathname === "/" && value !== 0) {
@@ -91,13 +106,27 @@ export default function Header(props) {
                   indicatorColor='primary'
                 >
                   <Tab className={classes.tab} component={Link} to="/" label='Home'/>
-                  <Tab className={classes.tab} component={Link} to="/services" label="Services"/>
+                  <Tab
+                    aria-owns={anchorEl ? "simple-menu" : undefined}
+                    aria-haspopup={anchorEl ? "true" : undefined}
+                    className={classes.tab}
+                    component={Link}
+                    onMouseOver={event => handleClick(event)}
+                    to="/services"
+                    label="Services"
+                  />
                   <Tab className={classes.tab} component={Link} to="/about" label='About'/>
                   <Tab className={classes.tab} component={Link} to="/contact" label='Contact'/>
                 </Tabs>
                 <Button variant='contained' color='secondary' className={classes.button}>
                   Free Estimate
                 </Button>
+                <Menu id="simple-id" anchorEl={anchorEl} open={open} onClose={handleClose} MenuListProps={{onMouseLeave: handleClose}}>
+                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/services"> Services</MenuItem>
+                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/customSoftware"> Custom Software</MenuItem>
+                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/mobileApp" > Mobile App Development</MenuItem>
+                  <MenuItem onClick={() => {handleClose(); setValue(1)}} component={Link} to="/websiteDev" > Website Development</MenuItem>
+                </Menu>
               </Toolbar>
           </AppBar>
       </ElevationScroll> 
