@@ -21,6 +21,7 @@ export default createTheme({
             fontFamily: 'Raleway',
             fontWeight: 600,
             fontSize:'1rem',
+            color: 'white'
         },
         estimate: {
             fontFamily: 'Raleway',
