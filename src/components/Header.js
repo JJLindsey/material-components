@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -32,6 +32,12 @@ const useStyles = makeStyles(theme => ({
   logo: {
     height: '7em'
   },
+  logoContainer: {
+    padding: 0,
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
+  },
   tabContainer: {
     marginLeft: 'auto'
   },
@@ -57,13 +63,30 @@ export default function Header(props) {
   const handleChange =(e, value) => {
     setValue(value)
   };
+//check current URL & set value to active tab
+  useEffect(() => {
+    if (window.location.pathname === "/" && value !== 0) {
+      setValue(0)
+    } else if (window.location.pathname === "/services" && value !== 1){
+      setValue(1)
+    } else if (window.location.pathname === "/about" && value !== 2) {
+      setValue(2)
+    } else if (window.location.pathname === "/contact" && value !== 3) {
+      setValue(3)
+    } else if (window.location.pathname === "/estimate" && value !== 4) {
+      setValue(4)
+    }
+  }, [value]);
 
   return (
     <React.Fragment>
       <ElevationScroll>
           <AppBar position='fixed' color='primary'>
               <Toolbar disableGutters>
-                <img className={classes.logo} alt='company logo' src={logo} />
+                <Button component={Link} to="/" disableRipple onClick={() => setValue(0)}
+                  className={classes.logoContainer}>
+                  <img className={classes.logo} alt='company logo' src={logo} />
+                </Button>
                 <Tabs  value={value} onChange={handleChange} className={classes.tabContainer}
                   indicatorColor='primary'
                 >
